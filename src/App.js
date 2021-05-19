@@ -1,9 +1,34 @@
+import React, { useEffect } from "react";
+import { create } from "jss";
+import rtl from "jss-rtl";
+import {
+  StylesProvider,
+  jssPreset,
+  ThemeProvider,
+  createMuiTheme
+} from "@material-ui/core/styles";
+import Login from './Views/Login'
 
+// Configure JSS
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
-function App() {
+const rtlTheme = createMuiTheme({ direction: "rtl" })
+
+function AppContent() {
+  useEffect(() => {
+    document.body.setAttribute("dir", "rtl");
+  }, [])
+
   return (
-    <h1>Hello Pakali</h1> 
-  )
+    <ThemeProvider theme={rtlTheme}>
+      <Login/>
+    </ThemeProvider>
+  );
 }
-
-export default App;
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      <AppContent />
+    </StylesProvider>
+  );
+}
