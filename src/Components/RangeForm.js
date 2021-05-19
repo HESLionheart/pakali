@@ -19,23 +19,11 @@ const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
     },
-    image: {
-        backgroundImage: 'url(https://www.reliablesoft.net/wp-content/uploads/2019/08/online-digital-marketing-course.png)',
-        backgroundRepeat: 'no-repeat',
-        backgroundColor:
-            theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-    },
     paper: {
         margin: theme.spacing(8, 4),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -43,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     },
     formControl: {
         margin: theme.spacing(1),
-        // minWidth: 120,
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
