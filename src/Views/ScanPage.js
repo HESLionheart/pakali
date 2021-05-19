@@ -1,4 +1,4 @@
-import Scanner  from './Components/Scanner'
+import Scanner  from '../Components/Scanner'
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -105,15 +105,3 @@ export default function MediaCard() {
     </MuiThemeProvider>
   );
 }
-
-
-/*function App() {
-  return (
-    <div>
-      <h1>Hello Pakali</h1>
-      <Scanner/>
-    </div>
-  )
-}
-
-export default App;*/
