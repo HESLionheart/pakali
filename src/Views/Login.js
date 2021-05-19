@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-import allUsers from '../ServerAPI/Users'
+import authUser from '../ServerAPI/Users'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,10 +45,24 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
 
-  const [isWrongPassword, setIsWrongPassword] = useState(true)
+  const [isWrongPassword, setIsWrongPassword] = useState(false)
+  const [input, setInput] = useState({})
 
-  const handleSubmit = () => {
-    allUsers() 
+  const handleInputChange = (e) => setInput({
+    ...input,
+    [e.currentTarget.name]: e.currentTarget.value
+  })
+
+  const handleSubmit = async (e) => {
+      const response = await authUser(input.id, input.password)
+      switch (response.status) {
+        case 200:
+          alert("yeshhhhhhhhhh")
+          break;
+        case 401:
+          setIsWrongPassword(true)
+          break;
+    }
   }
 
   return (
@@ -62,8 +76,9 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form onSubmit={handleSubmit} className={classes.form} noValidate>
+          <form className={classes.form} noValidate>
             <TextField
+              onChange={handleInputChange}
               type="number"
               variant="outlined"
               margin="normal"
@@ -75,6 +90,7 @@ export default function SignInSide() {
               autoFocus
             />
             <TextField
+              onChange={handleInputChange}
               error={isWrongPassword}
               helperText={isWrongPassword ? "סיסמה שגויה" : null}
               variant="outlined"
@@ -87,7 +103,8 @@ export default function SignInSide() {
               id="password"
             />
             <Button
-              type="submit"
+              onClick={handleSubmit}
+              // type="submit"
               fullWidth
               variant="contained"
               color="primary"
@@ -95,18 +112,6 @@ export default function SignInSide() {
             >
               התחבר
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </form>
         </div>
       </Grid>

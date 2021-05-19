@@ -1,17 +1,9 @@
-import key from "../keys.json"
-import admin from "firebase-admin"
+import axios from 'axios'
 
-admin.initializeApp({
-  credential: admin.credential.cert(key)
-});
+const authUser = async (id, pass) => {
 
-const db = admin.firestore();
-
-const allUsers = async () => {
-    // const snapshot = await db.collection('Users').get();
-    // snapshot.forEach((doc) => {
-    //     console.log(doc.id, '=>', doc.data());
-    // })
+    return axios.get(`http://localhost:5000/profile/${id}/${pass}`)
+            .catch(err => err.response)
 } 
 
-export default allUsers
+export default authUser
