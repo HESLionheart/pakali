@@ -1,9 +1,9 @@
 import QRCode from 'qrcode.react'
 
-function CreateRange(props) {
+function CreateRange({rangeData}) {
     return (
         <div>
-            <QRCode value={props.rangeData}/>
+            <QRCode value={JSON.stringify(rangeData)}/>
         </div>
     )
 }
