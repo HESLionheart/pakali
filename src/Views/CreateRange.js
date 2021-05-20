@@ -1,6 +1,7 @@
 import RangeForm from "../Components/RangeForm";
 import RangeQr from "../Components/RangeQr";
 import {useState} from "react";
+import createRange from "../ServerAPI/Ranges";
 
 function CreateRange(props) {
 
@@ -26,7 +27,9 @@ function CreateRange(props) {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        const response = await createRange(rangeData)
+        console.log(response)
         setQrEnabled(true)
     }
 

@@ -69,7 +69,7 @@ export default function Home({userData}) {
   return (
     <Grid container component="main" className={classes.root}>
       <Grid className={classes.background} item xs={12} sm={8} component={Paper} elevation={6} square>
-        <h1>שלום, {userData.Name}</h1>
+        <h1>שלום, {userData.name}</h1>
         <SpeedDial
           ariaLabel="SpeedDial example"
           className={classes.speedDial}

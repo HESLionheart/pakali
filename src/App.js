@@ -30,7 +30,7 @@ function AppContent() {
   return (
     <ThemeProvider theme={rtlTheme}>
       {
-        userData.tz ? <Home userData={userData}/> : <Login updateUserData={updateUserData}/>
+        userData.name ? <Home userData={userData}/> : <Login updateUserData={updateUserData}/>
       }
     </ThemeProvider>
   );
