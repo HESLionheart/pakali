@@ -78,7 +78,7 @@ export default function SignInSide({updateUserData}) {
               history.push('/create_range')
             }
             else {
-              history.push('/scan_page')
+              history.push('/home')
             }
 
             break;

@@ -17,6 +17,14 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import Divider from '@material-ui/core/Divider'
+import Tab from '@material-ui/core/Tab';
+import {
+    useHistory,
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+  } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,16 +64,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const actions = [
-    { icon: <GiPistolGun size={25}/>, name: 'מטווחים' },
-    { icon: <ReceiptIcon />, name: 'פטורים' },
-    { icon: <PeopleIcon />, name: 'נכס"ל' },
-    { icon: <ColorizeIcon />, name: 'חיסונים' },
-  ];
 
 export default function Home({userData}) {
   const classes = useStyles();
-
+  let history = useHistory()
   return (
     <Grid container component="main" className={classes.root}>
       <Grid className={classes.background} xs={12} component={Paper} elevation={6} square>
@@ -76,7 +78,7 @@ export default function Home({userData}) {
                 alignItems='center'
                 justify="center"> 
             <MyList userData={userData}/>
-            <MySpeedDial/>
+            <MySpeedDial history={history}/>
           </Grid>
       </Grid>  
     </Grid>
@@ -142,7 +144,17 @@ const MyList = ({userData}) => {
     )
 }
 
-const MySpeedDial = () => {
+const MySpeedDial = ({history}) => {
+    
+
+    const actions = [
+        { icon: <GiPistolGun size={25}/>, name: 'מטווחים', click: () => history.push('/scan_page') },
+        { icon: <ReceiptIcon />, name: 'פטורים' },
+        { icon: <PeopleIcon />, name: 'נכס"ל' },
+        { icon: <ColorizeIcon />, name: 'חיסונים' },
+    ];
+
+
     const classes = useStyles();
     const [open, setOpen] = useState(false);
 
@@ -165,13 +177,13 @@ const MySpeedDial = () => {
             direction="up"
         >
             {actions.map((action) => (
-            <SpeedDialAction
-                tooltipOpen
-                key={action.name}
-                icon={action.icon}
-                tooltipTitle={action.name}
-                onClick={handleClose}
-            />
+                <SpeedDialAction
+                    tooltipOpen
+                    key={action.name}
+                    icon={action.icon}
+                    tooltipTitle={action.name}
+                    onClick={action.click}
+                />
             ))}
         </SpeedDial>
     )
