@@ -10,6 +10,12 @@ import QRCode from 'qrcode.react'
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
+      },
+      background: {
+        backgroundColor: "#fde85e",
+      },
+    root: {
+        height: '100vh',
     },
     paper: {
         margin: theme.spacing(8, 4),

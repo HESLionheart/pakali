@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+export default function SignInSide({updateUserData}) {
   const classes = useStyles();
 
   const [isWrongPassword, setIsWrongPassword] = useState(false)
@@ -67,7 +67,7 @@ export default function SignInSide() {
       if(response) {
         switch (response.status) {
           case 200:
-            alert("yeshhhhhhhhhh")
+            updateUserData(response.data)
             break;
           case 401:
             setIsWrongPassword(true)
