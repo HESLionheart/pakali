@@ -67,7 +67,9 @@ export default function SignInSide({updateUserData}) {
       if(response) {
         switch (response.status) {
           case 200:
-            updateUserData(response.data)
+            let userData = response.data
+            userData.id = input.id
+            updateUserData(userData)
             break;
           case 401:
             setIsWrongPassword(true)
