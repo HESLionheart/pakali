@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core/styles";
 import Login from './Views/Login'
 import Home from './Views/Home'
+import NavBar from './Components/navBar'
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
