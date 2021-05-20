@@ -9,6 +9,16 @@ import {
 } from "@material-ui/core/styles";
 import Login from './Views/Login'
 import Home from './Views/Home'
+import NavBar from './Components/navBar'
+import CreateRange from "./Views/CreateRange";
+import {
+  useHistory,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import ScanPage from "./Views/ScanPage";
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -29,9 +39,22 @@ function AppContent() {
 
   return (
     <ThemeProvider theme={rtlTheme}>
-      {
-        userData.name ? <Home userData={userData}/> : <Login updateUserData={updateUserData}/>
-      }
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Login updateUserData={updateUserData}/>
+          </Route>
+          <Route path="/home">
+            <Home userData={userData}/>
+          </Route>
+          <Route path="/create_range">
+            <CreateRange/>
+          </Route>
+          <Route path="/scan_page" co>
+            <ScanPage/>
+          </Route>
+        </Switch>
+      </Router>
     </ThemeProvider>
   );
 }

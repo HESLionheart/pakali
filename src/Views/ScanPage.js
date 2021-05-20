@@ -17,6 +17,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import {registerUserRange} from "../ServerAPI/Users/index.js"
 
 
 const getWindowDimensions = () => {
@@ -47,11 +48,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard() {
+export default function ScanPage({userData}) {
   const classes = useStyles();
   const [result, setresult] = useState("")
   const [open, setOpen] = React.useState(false);
-
 
   const handleClose = () => {
     setOpen(false);
@@ -62,8 +62,10 @@ export default function MediaCard() {
       console.log(data.text)
       setresult(data.text)
       setOpen(true);
+      let parsedData = JSON.parse(data.text)
+      registerUserRange(userData.id, parsedData)
+     }
     }
-  }
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
@@ -104,4 +106,4 @@ export default function MediaCard() {
       </Grid>
     </MuiThemeProvider>
   );
-}
+ }

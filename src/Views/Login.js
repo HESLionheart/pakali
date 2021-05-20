@@ -11,6 +11,7 @@ import authUser from '../ServerAPI/Users'
 
 
 import logo from "../logo.png"
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,6 +55,8 @@ export default function SignInSide({updateUserData}) {
   const [isLoading, setIsLoading] = useState(false)
   const [input, setInput] = useState({})
 
+  let history = useHistory()
+
   const handleInputChange = (e) => setInput({
     ...input,
     [e.currentTarget.name]: e.currentTarget.value
@@ -67,7 +70,17 @@ export default function SignInSide({updateUserData}) {
       if(response) {
         switch (response.status) {
           case 200:
-            updateUserData(response.data)
+            let userData = response.data
+            userData.id = input.id
+            updateUserData(userData)
+            
+            if (userData.creds === "admin") {
+              history.push('/create_range')
+            }
+            else {
+              history.push('/scan_page')
+            }
+
             break;
           case 401:
             setIsWrongPassword(true)
