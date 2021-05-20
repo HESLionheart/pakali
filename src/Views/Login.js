@@ -11,6 +11,7 @@ import authUser from '../ServerAPI/Users'
 
 
 import logo from "../logo.png"
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,6 +55,8 @@ export default function SignInSide({updateUserData}) {
   const [isLoading, setIsLoading] = useState(false)
   const [input, setInput] = useState({})
 
+  let history = useHistory()
+
   const handleInputChange = (e) => setInput({
     ...input,
     [e.currentTarget.name]: e.currentTarget.value
@@ -70,6 +73,7 @@ export default function SignInSide({updateUserData}) {
             let userData = response.data
             userData.id = input.id
             updateUserData(userData)
+            history.push('/home')
             break;
           case 401:
             setIsWrongPassword(true)
