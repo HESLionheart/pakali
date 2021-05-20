@@ -48,7 +48,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard({userData}) {
+export default function ScanPage({userData}) {
   const classes = useStyles();
   const [result, setresult] = useState("")
   const [open, setOpen] = React.useState(false);

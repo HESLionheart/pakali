@@ -73,7 +73,14 @@ export default function SignInSide({updateUserData}) {
             let userData = response.data
             userData.id = input.id
             updateUserData(userData)
-            history.push('/home')
+            
+            if (userData.creds === "admin") {
+              history.push('/create_range')
+            }
+            else {
+              history.push('/scan_page')
+            }
+
             break;
           case 401:
             setIsWrongPassword(true)
