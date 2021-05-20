@@ -4,12 +4,11 @@ import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
-import ShareIcon from '@material-ui/icons/Share';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction'
+import PeopleIcon from '@material-ui/icons/People';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import ColorizeIcon from '@material-ui/icons/Colorize';
+import {GiPistolGun} from 'react-icons/gi'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,20 +42,30 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const actions = [
-    { icon: <FileCopyIcon />, name: 'Copy' },
-    { icon: <SaveIcon />, name: 'Save' },
-    { icon: <PrintIcon />, name: 'Print' },
-    { icon: <ShareIcon />, name: 'Share' },
-    { icon: <FavoriteIcon />, name: 'Like' },
+    { icon: <GiPistolGun size={25}/>, name: 'מטווחים' },
+    { icon: <ReceiptIcon />, name: 'פטורים' },
+    { icon: <PeopleIcon />, name: 'נכס"ל' },
+    { icon: <ColorizeIcon />, name: 'חיסונים' },
   ];
 
 export default function Home({userData}) {
   const classes = useStyles();
 
-//   const [isLoading, setIsLoading] = useState(false)
+  return (
+    <Grid container component="main" className={classes.root}>
+      <Grid className={classes.background} item xs={12} sm={8} component={Paper} elevation={6} square>
+        <h1>שלום, {userData.name}</h1>
+        <MySpeedDial/>
+      </Grid>  
+    </Grid>
+  );
+}
 
-    const [open, setOpen] = React.useState(false);
-    const [hidden, setHidden] = React.useState(false);
+
+const MySpeedDial = () => {
+    const classes = useStyles();
+    const [open, setOpen] = useState(false);
+    const [hidden, setHidden] = useState(false);
 
     const handleClose = () => {
     setOpen(false);
@@ -65,32 +74,27 @@ export default function Home({userData}) {
     const handleOpen = () => {
     setOpen(true);
     };
-
-  return (
-    <Grid container component="main" className={classes.root}>
-      <Grid className={classes.background} item xs={12} sm={8} component={Paper} elevation={6} square>
-        <h1>שלום, {userData.name}</h1>
+    
+    return (
         <SpeedDial
-          ariaLabel="SpeedDial example"
-          className={classes.speedDial}
-          hidden={hidden}
-          icon={<SpeedDialIcon />}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          open={open}
-          direction="up"
+            ariaLabel="SpeedDial example"
+            className={classes.speedDial}
+            hidden={hidden}
+            icon={<SpeedDialIcon />}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            open={open}
+            direction="up"
         >
-          {actions.map((action) => (
+            {actions.map((action) => (
             <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              onClick={handleClose}
+                tooltipOpen
+                key={action.name}
+                icon={action.icon}
+                tooltipTitle={action.name}
+                onClick={handleClose}
             />
-          ))}
+            ))}
         </SpeedDial>
-      </Grid>  
-    </Grid>
-  );
+    )
 }
-
