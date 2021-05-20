@@ -74,8 +74,8 @@ export default function CreateRange({rangeData, handleInputChanged, handleSubmit
                                 id="range-type-select"
                                 name="rangeType"
                             >
-                                <MenuItem value={"live"}>מטווח חי</MenuItem>
-                                <MenuItem value={"lazer"}>מטווח לייזר</MenuItem>
+                                <MenuItem value={"חיים"}>מטווח חי</MenuItem>
+                                <MenuItem value={"לייזר"}>מטווח לייזר</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl
@@ -90,8 +90,8 @@ export default function CreateRange({rangeData, handleInputChanged, handleSubmit
                                 id="gun-type-select"
                                 name="gunType"
                             >
-                                <MenuItem value={"long_m16"}>M16 ארוך</MenuItem>
-                                <MenuItem value={"short_m16"}>M16 קצר</MenuItem>
+                                <MenuItem value={"M16 ארוך"}>M16 ארוך</MenuItem>
+                                <MenuItem value={"M16 קצר"}>M16 קצר</MenuItem>
                             </Select>
                         </FormControl>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
